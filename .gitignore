@@ -7,6 +7,8 @@
 .idea/
 *.iml
 *.iws
+src/main/resources/*.properties
+DB/
 
 # Mac
 .DS_Store
