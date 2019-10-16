@@ -24,42 +24,43 @@ public class EntityController {
     }
 
     @GetMapping("/")
-    public String showUpdateForm(Model model) {
-        List<Student> studentsList = entityRepository.findAll();
-        model.addAttribute("students", studentsList);
+    public String showUpdateForm() {
         return "index";
     }
 
-    @GetMapping("/signup")
-    public String showSignUpForm(Student user) {
-        return "add-student";
+    @GetMapping("/login")
+    public String showLoginForm(Student student) {
+        return "login";
     }
-
 
     @GetMapping("/students")
     public String getAllStudents(Model model) {
         List<Student> studentList = entityRepository.findAll();
         model.addAttribute("students", studentList);
-        return "students-list";
+        return "student-list";
     }
 
+    @GetMapping("/signup")
+    public String showSignUpForm(Student student) {
+        return "sign-up";
+    }
 
     @PostMapping("/addStudent")
-    public String addUser(@Valid Student user, BindingResult result, Model model) {
+    public String addUser(@Valid Student student, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "add-student";
+            return "sign-up";
         }
-        entityRepository.save(user);
-        model.addAttribute("students", entityRepository.findAll());
-        return "index";
+        entityRepository.save(student);
+        model.addAttribute("student", entityRepository.findAll());
+        return "redirect:students";
     }
 
     @GetMapping("/deleteStudent/{id}")
     public String deleteStudent(@PathVariable("id") long id, Model model) {
         Student student = entityRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid id" + id));
         entityRepository.delete(student);
-        model.addAttribute("students", entityRepository.findAll());
-        return "index";
+        model.addAttribute("student", entityRepository.findAll());
+        return "redirect:../students";
     }
 
     @GetMapping("/editStudent/{id}")
@@ -76,8 +77,8 @@ public class EntityController {
             return "update-student";
         }
         entityRepository.save(student);
-        model.addAttribute("students", entityRepository.findAll());
-        return "index";
+        model.addAttribute("student", entityRepository.findAll());
+        return "redirect:../students";
     }
 
 

@@ -1,25 +1,10 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/main_layout}">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Material Design Bootstrap</title>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="/css/mdb.min.css" rel="stylesheet">
-    <!-- Your custom styles (optional) -->
-    <link href="/css/style.css" rel="stylesheet">
-</head>
-<body>
-<div class="container">
+<div layout:fragment="content" class="container">
     <div class="col-md-6 col-sm-12 ml-auto mr-auto mt-4 mb-4">
         <!-- Default form register -->
-        <form class="text-center border border-light p-5" action="#" th:action="@{/updateStudent/{id}(id=${student.id})}" th:object="${student}"
+        <form class="text-center border border-light p-5" th:action="@{/updateStudent/{id}(id=${student.id})}" th:object="${student}"
               method="post">
 
             <p class="h4 mb-4">Update Profile</p>
@@ -63,11 +48,9 @@
             </small>
 
             <!-- Sign up button -->
-            <button class="btn btn-info my-4 btn-block" type="submit">Update Profile</button>
+            <button class="btn btn-info my-4 btn-block" type="submit">Update</button>
 
         </form>
 
     </div>
 </div>
-</body>
-</html>
