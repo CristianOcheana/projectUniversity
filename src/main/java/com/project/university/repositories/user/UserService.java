@@ -2,14 +2,19 @@ package com.project.university.repositories.user;
 
 import com.project.university.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class UserService {
+@Service("userService")
+public class UserService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
@@ -33,5 +38,19 @@ public class UserService {
 
     public void delete(User user) {
         userRepository.delete(user);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Optional<User> byEmail = userRepository.findByEmail(email);
+        if (!byEmail.isPresent()) {
+           throw new UsernameNotFoundException("Username not found!");
+        }
+        User u = byEmail.get();
+        return new org.springframework.security.core.userdetails.User(u.getEmail(), u.getPassword(), getAuthority(u));
+    }
+
+    private List getAuthority(User user) {
+        return Arrays.asList(new SimpleGrantedAuthority("ROLE_" + "USER"));//TODO replace "USER" by user.getRole(); can be USER, ADMIN, etc...
     }
 }

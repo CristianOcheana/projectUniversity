@@ -15,6 +15,9 @@ import javax.annotation.Resource;
 @EnableWebSecurity
 public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    @Resource(name = "userService")
+    private UserDetailsService userDetailsService;
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -33,5 +36,10 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) {
         web.ignoring().antMatchers("/*.css");
         web.ignoring().antMatchers("/*.js");
+    }
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+        authenticationManagerBuilder.userDetailsService(userDetailsService);
     }
 }
