@@ -1,14 +1,14 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/main_layout}">
 
-<div layout:fragment="content" th:href="@{/students}" class="container">
+<div layout:fragment="content" th:href="@{/users}" class="container">
     <div class="row">
         <div class="col-md-6">
 
 
 
 
-            <h2 class="my-5">Students</h2>
+            <h2 class="my-5">Users</h2>
             <table class="table table-bordered table-striped table-responsive-md">
                 <thead>
                 <tr>
@@ -21,14 +21,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="student : ${students}">
-                    <td th:text="${student.id}"></td>
-                    <td th:text="${student.firstName}"></td>
-                    <td th:text="${student.lastName}"></td>
-                    <td th:text="${student.email}"></td>
-                    <td><a th:href="@{/editStudent/{id}(id=${student.id})}" class="btn btn-primary"><i
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.id}"></td>
+                    <td th:text="${user.firstName}"></td>
+                    <td th:text="${user.lastName}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td><a th:href="@{/editUser/{id}(id=${user.id})}" class="btn btn-primary"><i
                             class="fas fa-user-edit ml-2"></i></a></td>
-                    <td><a th:href="@{/deleteStudent/{id}(id=${student.id})}" class="btn btn-primary"><i
+                    <td><a th:href="@{/deleteUser/{id}(id=${user.id})}" class="btn btn-primary"><i
                             class="fas fa-user-times ml-2"></i></a></td>
                 </tr>
 

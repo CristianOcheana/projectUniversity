@@ -1,21 +1,17 @@
-package com.project.university.entity;
+package com.project.university.entities;
 
 import lombok.Getter;
 import lombok.Setter;
-import sun.security.util.Password;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 
 @Entity
 @Getter
 @Setter
-public class Student {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,17 +23,18 @@ public class Student {
     @NotBlank(message = "Last name is mandatory")
     private String lastName;
 
+    @Column(unique = true)
     @NotBlank(message = "Email is mandatory")
     private String email;
 
     @NotBlank(message = "Password is mandatory")
     private String password;
 
-    public Student() {
+    public User() {
 
     }
 
-    public Student(String firstName, String lastName, String email, String password) {
+    public User(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
