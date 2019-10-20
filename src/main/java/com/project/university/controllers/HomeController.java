@@ -1,7 +1,6 @@
 package com.project.university.controllers;
 
 import com.project.university.entities.User;
-import com.project.university.repo.user.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

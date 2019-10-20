@@ -5,49 +5,44 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Users</title>
+        <title>Users List</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
     </head>
     <body>
-    <div th:switch="${users}" class="container my-5">
-        <h2 th:text="${size}"></h2>
-        <div th:case="*">
-            <h1 class="my-5">Users</h1>
-            <h2 th:case="null">No user yet!</h2>
-            <ol>
-                <li th:each="stud : ${users}" th:text="${stud.email}" text="${stud.id}"></li>
-            </ol>
-        </div>
-    </div>
-    <table class="table table-striped table-responsive-md">
+    <h1 class="my-5">Users List</h1>
+    <table class="table table-dark table-responsive-md">
         <thead>
         <tr>
-            <th>firstName</th>
-            <th>lastName</th>
-            <th>email</th>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="user : ${users}">
+            <td th:text="${user.id}"></td>
             <td th:text="${user.firstName}"></td>
             <td th:text="${user.lastName}"></td>
             <td th:text="${user.email}"></td>
-            <td><a th:href="@{/edituser/{id}(id=${user.id})}" class="btn btn-primary"><i
+            <td><a th:href="@{/editUser/{id}(id=${user.id})}" class="btn btn-primary"><i
                     class="fas fa-user-edit ml-2"></i></a></td>
-            <td><a th:href="@{/deleteuser/{id}(id=${user.id})}" class="btn btn-primary"><i
+            <td><a th:href="@{/deleteUser/{id}(id=${user.id})}" class="btn btn-primary"><i
                     class="fas fa-user-times ml-2"></i></a></td>
         </tr>
         </tbody>
     </table>
-    <div class="row">
-        <div class="col-md-6 mt-5">
-            <input type="submit" class="btn btn-primary" value="Update User">
-        </div>
-    </div>
+    <!--    <div class="row">-->
+    <!--        <div class="col-md-6 mt-5">-->
+    <!--            <a href="/editUser/{id}">-->
+    <!--                <input type="submit" class="btn btn-dark" value="Update User">-->
+    <!--            </a>-->
+    <!--        </div>-->
+    <!--    </div>-->
     </body>
 </div>
 </html>

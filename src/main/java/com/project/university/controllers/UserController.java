@@ -2,7 +2,7 @@ package com.project.university.controllers;
 
 
 import com.project.university.entities.User;
-import com.project.university.repo.user.UserRepo;
+import com.project.university.repo.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,68 +17,62 @@ import java.util.List;
 @Controller
 public class UserController {
 
-    private final UserRepo userRepo;
+    private UserService userService;
 
     @Autowired
-    public UserController(UserRepo userRepo) {
-        this.userRepo = userRepo;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
-    @GetMapping("/registeruser")
-    public String showRegisterForm(User user) {
-        return "user-register";
-    }
-
-    @PostMapping("/registeruser")
-    public String registerUser(@Valid User user, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "user-register";
-        }
-        userRepo.save(user);
-        model.addAttribute("users", userRepo.findAll());
-        return "index";
-    }
-
-    @GetMapping("/loginuser")
+    @GetMapping("/loginUser")
     public String showLoginForm(User user) {
         return "user-login";
     }
 
-    @PostMapping("/loginuser")
+    @PostMapping("/loginUser")
     public String loginUser(@Valid User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "user-login";
         }
-        userRepo.save(user);
-        model.addAttribute("users", userRepo.findAll());
+        userService.save(user);
+        model.addAttribute("users", userService.findAll());
         return "index";
     }
 
 
-    @GetMapping("/users")
+    @GetMapping("/usersList")
     public String getAllUsers(Model model) {
-        List<User> users = userRepo.findAll();
+        List<User> users = userService.findAll();
         model.addAttribute("users", users);
         model.addAttribute("size", users.size());
-        return "users";
+        return "users-list";
     }
 
-    @GetMapping("/edituser/{id}")
+    @GetMapping("/editUser/{id}")
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
-        User user = userRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        User user = userService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
         model.addAttribute("user", user);
-        return "users";
+        return "user-edit";
     }
-    @PostMapping("/updateuser/{id}")
+
+    @PostMapping("/updateUser/{id}")
     public String updateUser(@PathVariable("id") long id, @Valid User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
             user.setId(id);
             return "user-edit";
         }
-
-        userRepo.save(user);
-        model.addAttribute("users", userRepo.findAll());
-        return "index";
+        userService.save(user);
+        model.addAttribute("users", userService.findAll());
+        return "users-list";
     }
+
+    @GetMapping("/deleteUser/{id}")
+    public String deleteUser(@PathVariable("id") long id, Model model) {
+        User user = userService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        userService.delete(user);
+        model.addAttribute("users", userService.findAll());
+        return "users-list";
+    }
+
 
 }

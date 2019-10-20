@@ -2,13 +2,14 @@ package com.project.university.repo.user;
 
 import com.project.university.entities.User;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
-@Repository
-public interface UserRepo extends CrudRepository<User, Long> {
 
-    List<User> findById(String name);
+interface UserRepo extends CrudRepository<User, Long> {
+
     List<User> findAll();
+    Optional<User> findByEmail(@Param("email") String email);
 }
