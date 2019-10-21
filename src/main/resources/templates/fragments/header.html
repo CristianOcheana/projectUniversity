@@ -1,4 +1,4 @@
-<header th:fragment="header" xmlns:th="http://www.thymeleaf.org">
+<header th:fragment="header" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <!--Navbar -->
 <nav class="mb-1 navbar navbar-expand-lg navbar-dark secondary-color">
     <a class="navbar-brand" href="#"></a>
@@ -34,12 +34,17 @@
             <h2 style="color:white">Project University</h2>
         </div>
         <ul class="navbar-nav ml-auto nav-flex-icons">
-            <li class="nav-item">
+            <li sec:authorize="!isAuthenticated()" class="nav-item">
                 <a class="nav-link waves-effect waves-light" th:href="@{/login}">Login</a>
             </li>
-            <li class="nav-item">
+            <li sec:authorize="!isAuthenticated()" class="nav-item">
                 <a class="nav-link" th:href="@{/signup}">Sign Up</a>
             </li>
+
+            <li sec:authorize="isAuthenticated()" class="nav-item">
+                <a class="nav-link waves-effect waves-light" th:href="@{/logout}">Log Out</a>
+            </li>
+
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">

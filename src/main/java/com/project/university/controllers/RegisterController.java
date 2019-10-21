@@ -31,6 +31,7 @@ public class RegisterController {
         if (result.hasErrors()) {
             return "sign-up";
         }
+        user.setRole("Student");
         userService.save(user);
         model.addAttribute("user", userService.findAll());
         return "redirect:users";
