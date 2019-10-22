@@ -2,12 +2,15 @@ package com.project.university.repositories.user;
 
 import com.project.university.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import java.util.Arrays;
 import java.util.List;
@@ -40,11 +43,15 @@ public class UserService implements UserDetailsService {
         userRepository.delete(user);
     }
 
+    public Optional<User> findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<User> byEmail = userRepository.findByEmail(email);
         if (!byEmail.isPresent()) {
-           throw new UsernameNotFoundException("User not found!");
+            throw new UsernameNotFoundException("User not found!");
         }
         User u = byEmail.get();
         return new org.springframework.security.core.userdetails.User(u.getEmail(), u.getPassword(), getAuthority(u));
@@ -53,8 +60,6 @@ public class UserService implements UserDetailsService {
     private List getAuthority(User user) {
         return Arrays.asList(new SimpleGrantedAuthority("ROLE_" + user.getRole()));//TODO replace "USER" by user.getRole(); can be USER, ADMIN, etc...
     }
-
-
 
 
 }

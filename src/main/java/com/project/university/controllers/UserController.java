@@ -3,6 +3,8 @@ package com.project.university.controllers;
 import com.project.university.entities.User;
 import com.project.university.repositories.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -44,7 +46,7 @@ public class UserController {
     }
 
     @GetMapping("/editUser/{id}")
-    public String showUpdateForm(@PathVariable("id") long id, Model model) {
+    public String showUpdateForm(@PathVariable("id") long id, Model model, User users) {
         User user = userService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid id" + id));
         model.addAttribute("user", user);
         return "update-user";
@@ -56,9 +58,22 @@ public class UserController {
             user.setId(id);
             return "update-user";
         }
+        user.setRole("Student");
         userService.save(user);
         model.addAttribute("user", userService.findAll());
         return "redirect:../users";
     }
+
+    @GetMapping("/updateProfile")
+    public String showUpdateForms(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        org.springframework.security.core.userdetails.User principal =
+                (org.springframework.security.core.userdetails.User) authentication.getPrincipal();
+
+        User user = userService.findByEmail(principal.getUsername()).orElseThrow(() -> new IllegalArgumentException("Invalid user" + principal.getUsername()));
+        model.addAttribute("user", user);
+        return "update-user";
+    }
+
 
 }

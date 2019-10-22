@@ -21,15 +21,15 @@ public class RegisterController {
         this.userService = userService;
     }
 
-    @GetMapping("/signup")
+    @GetMapping("/register")
     public String showSignUpForm(User user) {
-        return "sign-up";
+        return "register";
     }
 
-    @PostMapping("/signup")
+    @PostMapping("/register")
     public String addUser(@Valid User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "sign-up";
+            return "register";
         }
         user.setRole("Student");
         userService.save(user);

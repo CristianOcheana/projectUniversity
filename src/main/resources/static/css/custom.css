@@ -1,0 +1,7 @@
+.dropdown:hover .dropdown-menu{
+    display: block !important;
+    background-color:white !important;
+}
+.dropdown-menu .dropdown-item:hover {
+    background-color: deepskyblue !important;
+}
