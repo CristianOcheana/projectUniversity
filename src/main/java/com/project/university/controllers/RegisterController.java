@@ -31,6 +31,8 @@ public class RegisterController {
         if (result.hasErrors()) {
             return "register";
         }
+
+        user.setRole("student");
         userService.save(user);
         model.addAttribute("users", userService.findAll());
         return "users-list";

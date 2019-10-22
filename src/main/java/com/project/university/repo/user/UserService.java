@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Service("userService")
 public class UserService implements UserDetailsService {
 
     @Autowired
@@ -51,7 +51,7 @@ public class UserService implements UserDetailsService {
     }
 
     private List getAuthority(User user) {
-        return Arrays.asList(new SimpleGrantedAuthority("ROLE_" + "USER"));//TODO replace "USER" by user.getRole(); can be USER, ADMIN, etc...
+        return Arrays.asList(new SimpleGrantedAuthority("ROLE_" + user.getRole()));//TODO replace "USER" by user.getRole(); can be USER, ADMIN, etc...
     }
 }
 

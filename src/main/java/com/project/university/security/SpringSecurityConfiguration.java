@@ -25,7 +25,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().authorizeRequests().antMatchers("/static/css/**", "/js/**", "/images/**", "/**/favicon.ico").permitAll()
                 .and().authorizeRequests().antMatchers("/login", "logout").permitAll()
                 .and().authorizeRequests().antMatchers("/admin").authenticated()
-                .and().formLogin().loginPage("/login").defaultSuccessUrl("/").permitAll()
+                .and().formLogin().loginPage("/loginUser").usernameParameter("email").defaultSuccessUrl("/").permitAll()
         ;
 
         http.csrf().disable(); // disable CRSF
