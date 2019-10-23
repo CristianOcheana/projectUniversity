@@ -2,8 +2,9 @@ package com.project.university.controllers;
 
 import com.project.university.entities.User;
 import com.project.university.repo.user.UserService;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -60,7 +61,18 @@ public class UserController {
         User user = userService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
         userService.delete(user);
         model.addAttribute("users", userService.findAll());
-        return "users-list";
+        return "index";
+    }
+
+    @GetMapping("/updateProfile")
+    public String showUpdateForms(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        org.springframework.security.core.userdetails.User principal =
+                (org.springframework.security.core.userdetails.User) authentication.getPrincipal();
+
+        User user = userService.findByEmail(principal.getUsername()).orElseThrow(() -> new IllegalArgumentException("Invalid user" + principal.getUsername()));
+        model.addAttribute("user", user);
+        return "user-update";
     }
 
 

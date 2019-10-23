@@ -40,6 +40,10 @@ public class UserService implements UserDetailsService {
         userRepo.delete(user);
     }
 
+    public Optional<User> findByEmail(String email) {
+        return userRepo.findByEmail(email);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<User> byEmail = userRepo.findByEmail(email);

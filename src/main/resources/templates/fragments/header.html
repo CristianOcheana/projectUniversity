@@ -20,14 +20,16 @@
         </h5>
         <ul  class="navbar-nav ml-auto nav-flex-icons">
             <li sec:authorize="!isAuthenticated()" class="nav-item">
-                <a class="nav-link" href="/register">Register</a>
+                <a class="nav-link" th:href="@{/register}">Register</a>
             </li>
             <li sec:authorize="!isAuthenticated()" class="nav-item">
-                <a class="nav-link" href="/loginUser">Login</a>
+                <a class="nav-link" th:href="@{/loginUser}">Login</a>
             </li>
             <li sec:authorize="isAuthenticated()" class="nav-item">
-                <a class="nav-link" href="/logoutUser">Log Out</a>
+                <a class="nav-link" th:href="@{/logout}">Log Out</a>
+
             </li>
+
             <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
@@ -35,10 +37,13 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-default"
                      aria-labelledby="navbarDropdownMenuLink-333">
-                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="/updateProfile">Update profile</a>
                     <a class="dropdown-item" href="#">Another action</a>
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
+<!--                <h2>-->
+<!--                    Welcome <span sec:authentication="principal.username">User</span>-->
+<!--                </h2>-->
             </li>
         </ul>
         </div>
