@@ -66,11 +66,12 @@ public class UserController {
 
     @GetMapping("/updateProfile")
     public String showUpdateForms(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        org.springframework.security.core.userdetails.User principal =
-                (org.springframework.security.core.userdetails.User) authentication.getPrincipal();
-
-        User user = userService.findByEmail(principal.getUsername()).orElseThrow(() -> new IllegalArgumentException("Invalid user" + principal.getUsername()));
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        org.springframework.security.core.userdetails.User principal =
+//                (org.springframework.security.core.userdetails.User) authentication.getPrincipal();
+        org.springframework.security.core.userdetails.User userDetail = userService.getAuthenticatedUser();
+        User user = userService.findByEmail(userDetail.getUsername()).orElseThrow(() ->
+                new IllegalArgumentException("Invalid user" + userDetail.getUsername()));
         model.addAttribute("user", user);
         return "update-user";
     }

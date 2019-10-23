@@ -44,22 +44,35 @@ public class UserService implements UserDetailsService {
     }
 
     public Optional<User> findByEmail(String email) {
-        return userRepository.findByEmail(email);
+       return userRepository.findByEmail(email);
     }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<User> byEmail = userRepository.findByEmail(email);
         if (!byEmail.isPresent()) {
-            throw new UsernameNotFoundException("User not found!");
+           throw new UsernameNotFoundException("User not found!");
         }
         User u = byEmail.get();
         return new org.springframework.security.core.userdetails.User(u.getEmail(), u.getPassword(), getAuthority(u));
     }
 
     private List getAuthority(User user) {
-        return Arrays.asList(new SimpleGrantedAuthority("ROLE_" + user.getRole()));//TODO replace "USER" by user.getRole(); can be USER, ADMIN, etc...
+        return Arrays.asList(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
     }
+
+
+    public org.springframework.security.core.userdetails.User getAuthenticatedUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        org.springframework.security.core.userdetails.User principal = (org.springframework.security.core.userdetails.User)
+        authentication.getPrincipal();
+        return principal;
+
+    }
+
+
+
+
 
 
 }
