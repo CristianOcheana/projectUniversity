@@ -1,11 +1,13 @@
-package com.project.university.entities;
+package com.project.university.entityUser;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 
 @Entity
-public class User {
+class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,6 +19,7 @@ public class User {
     @NotBlank(message = "Last name is mandatory")
     private String lastName;
 
+    @Email
     @Column(unique = true)
     @NotBlank(message = "Email is mandatory")
     private String email;

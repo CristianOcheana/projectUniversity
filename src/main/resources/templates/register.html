@@ -5,7 +5,7 @@
     <div class="col-md-6 col-sm-12 ml-auto mr-auto mt-4 mb-4">
 
         <!-- Default form register -->
-        <form class="text-center border border-light p-5" th:action="@{/register}" th:object="${user}"
+        <form class="text-center border border-light p-5" th:action="@{/register}" th:object="${userDto}"
               method="post">
 
             <p class="h4 mb-4">Sign up</p>
@@ -38,6 +38,11 @@
 <!--            </small>-->
             <input type="password" th:field="*{password}" class="form-control" id="defaultRegisterFormPassword" placeholder="Password">
             <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></span>
+
+            <br>
+
+<!--            <input type="password" th:field="*{matchingPassword}" class="form-control" id="matchingPassword" placeholder="Confirm Password">-->
+<!--            <span th:if="${#fields.hasErrors('matchingPassword')}" th:errors="*{matchingPassword}" class="text-danger"></span>-->
 
             <br>
 

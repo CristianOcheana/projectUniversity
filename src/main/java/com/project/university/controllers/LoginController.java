@@ -1,6 +1,6 @@
 package com.project.university.controllers;
 
-import com.project.university.entities.User;
+import com.project.university.dto.UserDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -9,7 +9,7 @@ public class LoginController {
 
 
     @GetMapping("/login")
-    public String showLoginForm(User user) {
+    public String showLoginForm(UserDto userDto) {
         return "login";
     }
 
