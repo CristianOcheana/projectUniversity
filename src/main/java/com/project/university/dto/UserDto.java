@@ -1,32 +1,35 @@
 package com.project.university.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
-@Entity
+import javax.persistence.Id;
+import javax.validation.constraints.*;
+
 public class UserDto {
 
     @Id
     private Long id;
 
-    @NotNull
-    @NotEmpty
+//    @NotNull
+////    @Size(min = 3, max = 15)
+//    @NotEmpty(message = "First Name is mandatory")
+    @NotBlank(message = "First name is mandatory")
     private String firstName;
 
+    @NotNull
+    @Size(min = 3, max = 15)
+    @NotEmpty(message = "Last Name is mandatory")
     private String lastName;
 
     @Email
+    @NotNull
+    @NotEmpty(message = "Email is mandatory")
     private String email;
 
+    @NotNull
+    @NotEmpty(message = "Password is mandatory")
     private String password;
 
 //    private String matchingPassword;
-
-    private String role;
 
 
     public Long getId() {
@@ -77,11 +80,4 @@ public class UserDto {
 //        this.matchingPassword = matchingPassword;
 //    }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 }

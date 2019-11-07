@@ -29,8 +29,10 @@ public class UserService implements UserDetailsService {
     public UserDto save(UserDto userDto) {
 
         User user = convertEntity.convertToEntity(userDto);
+
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setRole("Student");
+
 
         return convertEntity.convertToDto(Optional.ofNullable(userRepository.save(user)));
 
@@ -83,6 +85,14 @@ public class UserService implements UserDetailsService {
                 authentication.getPrincipal();
 
         return principal;
+    }
+
+    public boolean emailExist(String email) {
+        Optional<User> user = userRepository.findByEmail(email);
+        if (user.isPresent()) {
+            return true;
+        }
+        return false;
     }
 
 }

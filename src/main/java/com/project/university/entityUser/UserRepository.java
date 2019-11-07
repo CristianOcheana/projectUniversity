@@ -1,6 +1,5 @@
 package com.project.university.entityUser;
 
-import com.project.university.dto.UserDto;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

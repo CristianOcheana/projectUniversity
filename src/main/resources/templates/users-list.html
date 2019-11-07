@@ -16,7 +16,7 @@
                     <th>FirstName</th>
                     <th>LastName</th>
                     <th>Email</th>
-                    <th>Role</th>
+<!--                    <th>Role</th>-->
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
@@ -27,7 +27,7 @@
                     <td th:text="${user.firstName}"></td>
                     <td th:text="${user.lastName}"></td>
                     <td th:text="${user.email}"></td>
-                    <td th:text="${user.role}"></td>
+<!--                    <td th:text="${user.role}"></td>-->
                     <td><a th:href="@{/editUser/{id}(id=${user.id})}" class="btn btn-primary"><i
                             class="fas fa-user-edit ml-2"></i></a></td>
                     <td><a th:href="@{/deleteUser/{id}(id=${user.id})}" class="btn btn-primary"><i
