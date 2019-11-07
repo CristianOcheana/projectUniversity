@@ -1,22 +1,25 @@
 package com.project.university.dto;
 
 
+import com.project.university.validation.PasswordMatches;
+import com.project.university.validation.ValidPassword;
+
 import javax.persistence.Id;
 import javax.validation.constraints.*;
 
+@PasswordMatches
 public class UserDto {
 
     @Id
     private Long id;
 
-//    @NotNull
-////    @Size(min = 3, max = 15)
-//    @NotEmpty(message = "First Name is mandatory")
-    @NotBlank(message = "First name is mandatory")
+    @NotNull
+    @Size(min = 3, max = 20)
+    @NotEmpty(message = "First Name is mandatory")
     private String firstName;
 
     @NotNull
-    @Size(min = 3, max = 15)
+    @Size(min = 3, max = 20)
     @NotEmpty(message = "Last Name is mandatory")
     private String lastName;
 
@@ -27,9 +30,12 @@ public class UserDto {
 
     @NotNull
     @NotEmpty(message = "Password is mandatory")
+    @ValidPassword
     private String password;
 
-//    private String matchingPassword;
+    @NotNull
+    @NotEmpty(message = "Password confirmation is required")
+    private String matchingPassword;
 
 
     public Long getId() {
@@ -72,12 +78,12 @@ public class UserDto {
         this.password = password;
     }
 
-//    public String getMatchingPassword() {
-//        return matchingPassword;
-//    }
+    public String getMatchingPassword() {
+        return matchingPassword;
+    }
 
-//    public void setMatchingPassword(String matchingPassword) {
-//        this.matchingPassword = matchingPassword;
-//    }
+    public void setMatchingPassword(String matchingPassword) {
+        this.matchingPassword = matchingPassword;
+    }
 
 }
