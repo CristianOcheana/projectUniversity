@@ -37,11 +37,11 @@ public class RegisterController {
             result.rejectValue("email", null, "This email is already register: " + userDto.getEmail());
         }
 
-        if (Pattern.compile("[0-9]").matcher(userDto.getFirstName()).find()) {
+        if (!userDto.getFirstName().chars().allMatch(Character::isLetter)) {
             result.rejectValue("firstName", null, "First Name must contain only letters");
         }
 
-        if (Pattern.compile("[0-9]").matcher(userDto.getLastName()).find()) {
+        if (!userDto.getLastName().chars().allMatch(Character::isLetter)) {
             result.rejectValue("lastName", null, "Last Name must contain only letters");
         }
 
