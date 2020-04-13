@@ -10,7 +10,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 @Service("userService")
@@ -44,12 +50,10 @@ public class UserService implements UserDetailsService {
     }
 
 
-
     public Optional<UserDto> findById(Long id) {
         Optional<User> user = Optional.of(userRepository.findById(id).get());
         return Optional.ofNullable(convertEntity.convertToDto(user));
     }
-
 
 
     public void delete(UserDto userDto) {
@@ -63,11 +67,12 @@ public class UserService implements UserDetailsService {
     }
 
 
-
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<User> byEmail = userRepository.findByEmail(email);
+        BindingResult result = null;
         if (!byEmail.isPresent()) {
+            result.rejectValue("email", null, "Email not found");
             throw new UsernameNotFoundException("User not found!");
         }
         User u = byEmail.get();
@@ -93,6 +98,27 @@ public class UserService implements UserDetailsService {
             return true;
         }
         return false;
+    }
+
+    public boolean checkEmail(String input) {
+
+        Path path = Paths.get("D:\\projectUniversity\\src\\main\\resources\\config\\emailValidation");
+
+        List<String> line = null;
+        try {
+            line = Files.readAllLines(path);
+        } catch (IOException e) {
+            System.out.println("no read");
+            e.printStackTrace();
+        }
+
+        for (String index : line) {
+            if (input.equals(index)) {
+                return false;
+            }
+        }
+        return true;
+
     }
 
 }

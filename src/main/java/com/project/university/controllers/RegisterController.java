@@ -12,7 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
-import java.util.regex.Pattern;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 
 @Controller
 @RequestMapping("/register")
@@ -37,6 +41,10 @@ public class RegisterController {
             result.rejectValue("email", null, "This email is already register: " + userDto.getEmail());
         }
 
+        if (userService.checkEmail(userDto.getEmail())) {
+            result.rejectValue("email", null, "Incorrect email or You are not a student of this university");
+        }
+
         if (!userDto.getFirstName().chars().allMatch(Character::isLetter)) {
             result.rejectValue("firstName", null, "First Name must contain only letters");
         }
@@ -49,11 +57,14 @@ public class RegisterController {
             return "register";
         }
 
-
         userService.save(userDto);
         model.addAttribute("user", userService.findAll());
         return "redirect:users";
     }
+
+
+
+
 
 
 }
