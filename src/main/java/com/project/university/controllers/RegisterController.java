@@ -2,6 +2,7 @@ package com.project.university.controllers;
 
 import com.project.university.dto.UserDto;
 import com.project.university.entityUser.UserService;
+import com.project.university.userCheck.CheckEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,22 +13,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.List;
 
 @Controller
 @RequestMapping("/register")
 public class RegisterController {
 
     private UserService userService;
+    private CheckEmail checkEmail;
 
 
     @Autowired
-    public RegisterController(UserService userService) {
+    public RegisterController(UserService userService, CheckEmail checkEmail) {
         this.userService = userService;
+        this.checkEmail = checkEmail;
     }
 
     @GetMapping
@@ -41,7 +39,7 @@ public class RegisterController {
             result.rejectValue("email", null, "This email is already register: " + userDto.getEmail());
         }
 
-        if (userService.checkEmail(userDto.getEmail())) {
+        if (!checkEmail.checkEmailIfExists(userDto.getEmail())) {
             result.rejectValue("email", null, "Incorrect email or You are not a student of this university");
         }
 
@@ -56,6 +54,8 @@ public class RegisterController {
         if (result.hasErrors()) {
             return "register";
         }
+
+
 
         userService.save(userDto);
         model.addAttribute("user", userService.findAll());

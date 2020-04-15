@@ -1,6 +1,8 @@
 package com.project.university.entityUser;
 
 import com.project.university.dto.UserDto;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -12,11 +14,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
-import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.*;
 import java.util.*;
 
 @Service("userService")
@@ -100,25 +103,7 @@ public class UserService implements UserDetailsService {
         return false;
     }
 
-    public boolean checkEmail(String input) {
 
-        Path path = Paths.get("D:\\projectUniversity\\src\\main\\resources\\config\\emailValidation");
 
-        List<String> line = null;
-        try {
-            line = Files.readAllLines(path);
-        } catch (IOException e) {
-            System.out.println("no read");
-            e.printStackTrace();
-        }
-
-        for (String index : line) {
-            if (input.equals(index)) {
-                return false;
-            }
-        }
-        return true;
-
-    }
 
 }
