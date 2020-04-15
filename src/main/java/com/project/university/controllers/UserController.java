@@ -1,10 +1,8 @@
 package com.project.university.controllers;
 
-import com.project.university.entities.User;
-import com.project.university.repositories.user.UserService;
+import com.project.university.dto.UserDto;
+import com.project.university.entityUser.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,34 +30,33 @@ public class UserController {
 
     @GetMapping("/users")
     public String getAllStudents(Model model) {
-        List<User> userList = userService.findAll();
-        model.addAttribute("users", userList);
+        List<UserDto> userDtoList = userService.findAll();
+        model.addAttribute("users", userDtoList);
         return "users-list";
     }
 
     @GetMapping("/deleteUser/{id}")
     public String deleteStudent(@PathVariable("id") long id, Model model) {
-        User user = userService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid id" + id));
+        UserDto user = userService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid id" + id));
         userService.delete(user);
         model.addAttribute("user", userService.findAll());
         return "redirect:../users";
     }
 
     @GetMapping("/editUser/{id}")
-    public String showUpdateForm(@PathVariable("id") long id, Model model, User users) {
-        User user = userService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid id" + id));
+    public String showUpdateForm(@PathVariable("id") long id, Model model) {
+        UserDto user = userService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid id" + id));
         model.addAttribute("user", user);
         return "update-user";
     }
 
     @PostMapping("/updateUser/{id}")
-    public String updateStudent(@PathVariable("id") long id, @Valid User user, BindingResult result, Model model) {
+    public String updateStudent(@PathVariable("id") long id, @Valid UserDto userDto, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            user.setId(id);
+            userDto.setId(id);
             return "update-user";
         }
-        user.setRole("Student");
-        userService.save(user);
+        userService.save(userDto);
         model.addAttribute("user", userService.findAll());
         return "redirect:../users";
     }
@@ -70,11 +67,13 @@ public class UserController {
 //        org.springframework.security.core.userdetails.User principal =
 //                (org.springframework.security.core.userdetails.User) authentication.getPrincipal();
         org.springframework.security.core.userdetails.User userDetail = userService.getAuthenticatedUser();
-        User user = userService.findByEmail(userDetail.getUsername()).orElseThrow(() ->
+        UserDto userDto = userService.findByEmail(userDetail.getUsername()).orElseThrow(() ->
                 new IllegalArgumentException("Invalid user" + userDetail.getUsername()));
-        model.addAttribute("user", user);
+        model.addAttribute("user", userDto);
         return "update-user";
     }
+
+
 
 
 }
