@@ -2,7 +2,7 @@
       xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/main_layout}">
 
 <div layout:fragment="content" class="container">
-    <div class="col-md-6 col-sm-12 ml-auto mr-auto mt-4 mb-4">
+    <div class="col-md-6 col-sm-12 ml-auto mr-auto mt-4 mb-4" id="register">
 
         <!-- Default form register -->
         <form class="text-center border border-light p-5" th:action="@{/register}" th:object="${userDto}"
@@ -16,12 +16,12 @@
                     <!-- First name -->
                     <input type="text" th:field="*{firstName}" class="form-control" id="firstName"
                            placeholder="FirstName">
-                    <p class="text-danger" th:each="error : ${#fields.errors('firstName')}" th:text="${error}">FirstName error</p>
+                    <span class="text-danger text-left" th:each="error : ${#fields.errors('firstName')}" th:text="${error}">FirstName error</span>
                 </div>
                 <div class="col">
                     <!-- Last name -->
                     <input type="text" th:field="*{lastName}" class="form-control" id="lastName" placeholder="LastName">
-                    <p class="text-danger" th:each="error : ${#fields.errors('lastName')}" th:text="${error}">LastName error</p>
+                    <span class="text-danger text-left" th:each="error : ${#fields.errors('lastName')}" th:text="${error}">LastName error</span>
                 </div>
             </div>
 
@@ -30,7 +30,7 @@
             <!--            <input id="regUsername"minlength="5" maxlength="15" name="" oninput="validate()" th:field="*{username}"  class="form-control" placeholder="Username" type="text" required>-->
 
             <input th:field="*{email}" class="form-control" id="email" placeholder="Email">
-            <p class="text-danger" th:each="error : ${#fields.errors('email')}" th:text="${error}">Email error</p>
+            <span class="text-danger text-left" th:each="error : ${#fields.errors('email')}" th:text="${error}">Email error</span>
             <br>
 
             <!-- Password -->
@@ -41,13 +41,13 @@
             <!--            </small>-->
             <input type="password" th:field="*{password}" class="form-control" id="defaultRegisterFormPassword"
                    placeholder="Password">
-            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></span>
+            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger text-left"></span>
 
 
             <br>
 
                         <input type="password" th:field="*{matchingPassword}" class="form-control" id="matchingPassword" placeholder="Confirm Password">
-                        <span th:if="${#fields.hasErrors('matchingPassword')}" th:errors="*{matchingPassword}" class="text-danger"></span>
+                        <span th:if="${#fields.hasErrors('matchingPassword')}" th:errors="*{matchingPassword}" class="text-danger text-left"></span>
 
             <br>
 
