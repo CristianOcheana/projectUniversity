@@ -3,7 +3,9 @@ package com.project.university.dto;
 
 import com.project.university.validation.PasswordMatches;
 import com.project.university.validation.ValidPassword;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.*;
 
@@ -36,6 +38,7 @@ public class UserDto {
     @NotNull
     @NotEmpty(message = "Password confirmation is required")
     private String matchingPassword;
+
 
 
     public Long getId() {

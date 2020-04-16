@@ -34,7 +34,7 @@ public class RegisterController {
     }
 
     @PostMapping
-    public String addUser(@ModelAttribute("userDto") @Valid UserDto userDto, BindingResult result, Model model) {
+    public String addUser(@ModelAttribute("userDto") @Valid UserDto userDto, BindingResult result) {
         if (userService.emailExist(userDto.getEmail())) {
             result.rejectValue("email", null, "This email is already register: " + userDto.getEmail());
         }
@@ -55,10 +55,7 @@ public class RegisterController {
             return "register";
         }
 
-
-
         userService.save(userDto);
-        model.addAttribute("user", userService.findAll());
         return "redirect:users";
     }
 
