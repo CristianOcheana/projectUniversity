@@ -84,6 +84,4 @@ public class RegisterController {
         model.addAttribute("user", userService.findAll());
         return "redirect:users";
     }
-
-
 }
