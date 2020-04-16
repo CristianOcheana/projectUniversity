@@ -41,9 +41,8 @@ public class CheckEmailValidator implements CheckEmail {
     @Override
     public boolean checkEmailIfExists(String input) {
         Workbook workbook = null;
-        File file = new File(getClass().getClassLoader().getResource("config/StudentList.xlsx").getFile());
         try {
-            workbook = WorkbookFactory.create(file);
+            workbook = WorkbookFactory.create(new File(getClass().getClassLoader().getResource("config/StudentList.xlsx").getFile()));
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InvalidFormatException e) {
