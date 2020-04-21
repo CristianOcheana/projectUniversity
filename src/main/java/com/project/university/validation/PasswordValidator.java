@@ -32,7 +32,7 @@ public class PasswordValidator implements ConstraintValidator<ValidPassword, Str
         }
         context.disableDefaultConstraintViolation();
         context.buildConstraintViolationWithTemplate(
-                Joiner.on(",").join(validator.getMessages(result)))
+                Joiner.on(" ").join(validator.getMessages(result)))
                 .addConstraintViolation();
 
         return false;

@@ -42,7 +42,7 @@ public class CheckEmailValidator implements CheckEmail {
     public boolean checkEmailIfExists(String input) {
         Workbook workbook = null;
         try {
-            workbook = WorkbookFactory.create(new File("D:\\projectUniversity\\src\\main\\resources\\config\\StudentList.xlsx"));
+            workbook = WorkbookFactory.create(new File(getClass().getClassLoader().getResource("config/StudentList.xlsx").getFile()));
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InvalidFormatException e) {

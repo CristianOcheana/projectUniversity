@@ -2,61 +2,53 @@
       xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/main_layout}">
 
 <div layout:fragment="content" class="container">
-    <div class="col-md-6 col-sm-12 ml-auto mr-auto mt-4 mb-4">
+    <div class="col-md-6 col-sm-12 ml-auto mr-auto mt-4 mb-4" id="register">
 
         <!-- Default form register -->
         <form class="text-center border border-light p-5" th:action="@{/register}" th:object="${userDto}"
               method="post">
-
-
             <p class="h4 mb-4">Sign up</p>
-
             <div class="form-row mb-4">
-                <div class="col">
-                    <!-- First name -->
-                    <input type="text" th:field="*{firstName}" class="form-control" id="firstName"
-                           placeholder="FirstName">
-                    <p class="text-danger" th:each="error : ${#fields.errors('firstName')}" th:text="${error}">FirstName error</p>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <input type="text" th:field="*{firstName}" class="form-control" id="firstName"
+                               placeholder="FirstName">
+                        <span class="text-danger text-left" th:each="error : ${#fields.errors('firstName')}"
+                              th:text="${error}">FirstName error</span>
+                    </div>
                 </div>
-                <div class="col">
-                    <!-- Last name -->
-                    <input type="text" th:field="*{lastName}" class="form-control" id="lastName" placeholder="LastName">
-                    <p class="text-danger" th:each="error : ${#fields.errors('lastName')}" th:text="${error}">LastName error</p>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <input type="text" th:field="*{lastName}" class="form-control" id="lastName"
+                               placeholder="LastName">
+                        <span class="text-danger text-left" th:each="error : ${#fields.errors('lastName')}"
+                              th:text="${error}">LastName error</span>
+                    </div>
                 </div>
             </div>
-
-            <!-- E-mail -->
-
-            <!--            <input id="regUsername"minlength="5" maxlength="15" name="" oninput="validate()" th:field="*{username}"  class="form-control" placeholder="Username" type="text" required>-->
-
-            <input th:field="*{email}" class="form-control" id="email" placeholder="Email">
-            <p class="text-danger" th:each="error : ${#fields.errors('email')}" th:text="${error}">Email error</p>
-            <br>
-
-            <!-- Password -->
-            <!--            <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password"-->
-            <!--                   aria-describedby="defaultRegisterFormPasswordHelpBlock">-->
-            <!--            <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">-->
-            <!--                At least 8 characters and 1 digit-->
-            <!--            </small>-->
-            <input type="password" th:field="*{password}" class="form-control" id="defaultRegisterFormPassword"
-                   placeholder="Password">
-            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></span>
-
-
-            <br>
-
-                        <input type="password" th:field="*{matchingPassword}" class="form-control" id="matchingPassword" placeholder="Confirm Password">
-                        <span th:if="${#fields.hasErrors('matchingPassword')}" th:errors="*{matchingPassword}" class="text-danger"></span>
-
-            <br>
-
-            <!-- Phone number -->
-            <input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number"
-                   aria-describedby="defaultRegisterFormPhoneHelpBlock">
-            <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
-                Optional - for two step authentication
-            </small>
+            <div class="form-group">
+                <input th:field="*{email}" class="form-control" id="email" placeholder="Email">
+                <span class="text-danger text-left" th:each="error : ${#fields.errors('email')}" th:text="${error}">Email error</span>
+            </div>
+            <div class="form-group">
+                <input type="password" th:field="*{password}" class="form-control" id="defaultRegisterFormPassword"
+                       placeholder="Password">
+                <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                      class="text-danger text-left"></span>
+            </div>
+            <div class="form-group">
+                <input type="password" th:field="*{matchingPassword}" class="form-control" id="matchingPassword"
+                       placeholder="Confirm Password">
+                <span th:if="${#fields.hasErrors('matchingPassword')}" th:errors="*{matchingPassword}"
+                      class="text-danger text-left"></span>
+            </div>
+            <div class="form-group">
+                <input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number"
+                       aria-describedby="defaultRegisterFormPhoneHelpBlock">
+                <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+                    Optional - for two step authentication
+                </small>
+            </div>
 
             <!-- Newsletter -->
             <div class="custom-control custom-checkbox">

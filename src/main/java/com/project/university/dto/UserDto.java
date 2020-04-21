@@ -16,27 +16,19 @@ public class UserDto {
     private Long id;
 
     @NotNull
-    @Size(min = 3, max = 20)
-    @NotEmpty(message = "First Name is mandatory")
     private String firstName;
 
     @NotNull
-    @Size(min = 3, max = 20)
-    @NotEmpty(message = "Last Name is mandatory")
     private String lastName;
 
-    @Email
     @NotNull
-    @NotEmpty(message = "Email is mandatory")
     private String email;
 
     @NotNull
-    @NotEmpty(message = "Password is mandatory")
     @ValidPassword
     private String password;
 
     @NotNull
-    @NotEmpty(message = "Password confirmation is required")
     private String matchingPassword;
 
 
