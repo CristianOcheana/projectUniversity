@@ -1,18 +1,20 @@
 package com.project.university.controllers.admin;
 
+import com.project.university.controllers.AdminController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class Dashboard {
+public class Dashboard extends AdminController {
 
-    @GetMapping("/admin")
+    @GetMapping("/")
     public String index() {
-        return showDashboard();
+        return dashboard();
     }
 
-    @GetMapping("/admin/dashboard")
-    public String showDashboard() {
+    @GetMapping("/dashboard")
+    public String dashboard() {
         return "admin/dashboard";
     }
 }

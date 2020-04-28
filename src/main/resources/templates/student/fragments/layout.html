@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head th:replace="student/fragments/head :: head">
+</head>
+<body id="dashboard" class="full-layout  nav-right-hide nav-right-start-hide  nav-top-fixed      responsive    clearfix"
+      data-active="dashboard " data-smooth-scrolling="1">
+<div class="vd_body">
+
+    <div th:replace="student/fragments/header :: header"></div>
+
+    <div class="content">
+        <div class="container">
+            <div th:replace="student/fragments/sidebars :: sidebars"></div>
+            <div layout:fragment="content"></div>
+        </div>
+    </div>
+
+    <div th:replace="student/fragments/footer :: footer"></div>
+    <div th:replace="student/fragments/javascript :: javascript"></div>
+</div>
+</body>
+</html>
