@@ -24,7 +24,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/", "/index").permitAll()
                 .and().authorizeRequests().antMatchers("/static/css/**", "/js/**", "/images/**", "/**/favicon.ico").permitAll()
                 .and().authorizeRequests().antMatchers("/login", "logout").permitAll()
-                .and().authorizeRequests().antMatchers("/admin").authenticated()
+                .and().authorizeRequests().antMatchers("/admin/dashboard").authenticated()
                 .and().formLogin().loginPage("/login").usernameParameter("email").defaultSuccessUrl("/").permitAll()
                 .and().logout().logoutSuccessUrl("/").permitAll()
 
