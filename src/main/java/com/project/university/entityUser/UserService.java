@@ -42,9 +42,18 @@ public class UserService implements UserDetailsService {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setRole("Student");
 
-
         return convertEntity.convertToDto(Optional.ofNullable(userRepository.save(user)));
+    }
 
+    public UserDto updateProfile(UserDto userDto) {
+        User existingUser = userRepository.findById(userDto.getId()).get();
+
+        if (bCryptPasswordEncoder.matches(userDto.getPassword(), existingUser.getPassword())) {
+            existingUser.setFirstName(userDto.getFirstName());
+            existingUser.setLastName(userDto.getLastName());
+        }
+
+        return convertEntity.convertToDto(Optional.ofNullable(userRepository.save(existingUser)));
     }
 
 
@@ -70,9 +79,6 @@ public class UserService implements UserDetailsService {
     }
 
 
-
-
-
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<User> byEmail = userRepository.findByEmail(email);
@@ -84,7 +90,6 @@ public class UserService implements UserDetailsService {
         User u = byEmail.get();
         return new org.springframework.security.core.userdetails.User(u.getEmail(), u.getPassword(), getAuthority(u));
     }
-
 
 
     private List getAuthority(User user) {
@@ -107,8 +112,6 @@ public class UserService implements UserDetailsService {
         }
         return false;
     }
-
-
 
 
 }

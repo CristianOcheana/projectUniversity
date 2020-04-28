@@ -1,15 +1,12 @@
 package com.project.university.dto;
 
 
-import com.project.university.validation.PasswordMatches;
 import com.project.university.validation.ValidPassword;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.*;
 
-@PasswordMatches
+
 public class UserDto {
 
     @Id
@@ -28,9 +25,8 @@ public class UserDto {
     @ValidPassword
     private String password;
 
-    @NotNull
-    private String matchingPassword;
 
+    private String matchingPassword;
 
 
     public Long getId() {

@@ -75,10 +75,14 @@ public class RegisterController {
             }
         }
 
+
+        if (!userDto.getPassword().equals(userDto.getMatchingPassword())) {
+            result.rejectValue("matchingPassword", null, "Confirm password incorrect");
+        }
+
         if (result.hasErrors()) {
             return "register";
         }
-
 
         userService.save(userDto);
         model.addAttribute("user", userService.findAll());

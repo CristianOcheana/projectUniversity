@@ -68,12 +68,17 @@ public class UserController {
 
         }
 
+
+
+
         if (result.hasErrors()) {
             return "update-user";
 
         }
 
-        userService.save(userDto);
+
+            userService.updateProfile(userDto);
+
         return "redirect:../users";
     }
 
