@@ -1,6 +1,36 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{admin/fragments/layout}">
 
+<th:block layout:fragment="heading">
+    <link th:href="@{/admin/plugins/prettyPhoto-plugin/css/prettyPhoto.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/admin/plugins/fullcalendar/fullcalendar.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/admin/plugins/fullcalendar/fullcalendar.print.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/admin/plugins/tagsInput/jquery.tagsinput.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/admin/plugins/bootstrap-switch/bootstrap-switch.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/admin/plugins/daterangepicker/daterangepicker-bs3.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/admin/plugins/bootstrap-timepicker/bootstrap-timepicker.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/admin/plugins/colorpicker/css/colorpicker.css}" rel="stylesheet" type="text/css">
+</th:block>
+
+<th:block layout:fragment="javascripts">
+    <script type="text/javascript" th:src="@{/admin/plugins/tagsInput/jquery.tagsinput.min.js}"></script>
+    <script type="text/javascript" th:src="@{/admin/plugins/bootstrap-switch/bootstrap-switch.min.js}"></script>
+    <script type="text/javascript" th:src="@{/admin/plugins/dataTables/jquery.dataTables.min.js}"></script>
+    <script type="text/javascript" th:src="@{/admin/plugins/prettyPhoto-plugin/js/jquery.prettyPhoto.js}"></script>
+    <script type="text/javascript" th:src="@{/admin/plugins/fullcalendar/fullcalendar.min.js}"></script>
+    <!-- Flot Chart  -->
+    <script type="text/javascript" th:src="@{/admin/plugins/flot/jquery.flot.min.js}"></script>
+    <script type="text/javascript" th:src="@{/admin/plugins/flot/jquery.flot.resize.min.js}"></script>
+    <script type="text/javascript" th:src="@{/admin/plugins/flot/jquery.flot.pie.min.js}"></script>
+    <script type="text/javascript" th:src="@{/admin/plugins/flot/jquery.flot.categories.min.js}"></script>
+    <script type="text/javascript" th:src="@{/admin/plugins/flot/jquery.flot.time.min.js}"></script>
+    <script type="text/javascript" th:src="@{/admin/plugins/flot/jquery.flot.animator.min.js}"></script>
+
+    <!-- Vector Map -->
+    <script type="text/javascript" th:src="@{/admin/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js}"></script>
+    <script type="text/javascript" th:src="@{/admin/plugins/jvectormap/jquery-jvectormap-world-mill-en.js}"></script>
+</th:block>
+
 <div layout:fragment="content">
     <div class="vd_content-wrapper">
         <div class="vd_container">

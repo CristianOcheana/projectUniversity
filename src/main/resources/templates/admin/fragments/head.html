@@ -1,4 +1,4 @@
-<head th:fragment="head" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
     <meta charset="utf-8"/>
     <title>Multipurpose Dashboard - Responsive Multipurpose Admin Templates | Vendroid</title>
     <meta name="keywords" content="HTML5 Template, CSS3, All Purpose Admin Template, "/>
@@ -16,10 +16,6 @@
     <link rel="apple-touch-icon-precomposed" th:href="@{/admin/img/ico/apple-touch-icon-57-precomposed.png}">
     <link rel="shortcut icon" th:href="@{/admin/img/ico/favicon.png}">
 
-
-    <!-- CSS -->
-
-    <!-- Bootstrap & FontAwesome & Entypo CSS -->
     <link rel="stylesheet" th:href="@{/admin/css/bootstrap.min.css}" type="text/css">
     <link rel="stylesheet" th:href="@{/admin/css/font-awesome.min.css}" type="text/css">
     <!--[if IE 7]>
@@ -31,23 +27,9 @@
 
     <!-- Plugin CSS -->
     <link rel="stylesheet" th:href="@{/admin/plugins/jquery-ui/jquery-ui.custom.min.css}" type="text/css">
-    <link th:href="@{/admin/plugins/prettyPhoto-plugin/css/prettyPhoto.css}" rel="stylesheet" type="text/css">
     <link th:href="@{/admin/plugins/isotope/css/isotope.css}" rel="stylesheet" type="text/css">
     <link th:href="@{/admin/plugins/pnotify/css/jquery.pnotify.css}" media="screen" rel="stylesheet" type="text/css">
-    <link th:href="@{/admin/plugins/google-code-prettify/prettify.css}" rel="stylesheet" type="text/css">
-
-
     <link th:href="@{/admin/plugins/mCustomScrollbar/jquery.mCustomScrollbar.css}" rel="stylesheet" type="text/css">
-    <link th:href="@{/admin/plugins/tagsInput/jquery.tagsinput.css}" rel="stylesheet" type="text/css">
-    <link th:href="@{/admin/plugins/bootstrap-switch/bootstrap-switch.css}" rel="stylesheet" type="text/css">
-    <link th:href="@{/admin/plugins/daterangepicker/daterangepicker-bs3.css}" rel="stylesheet" type="text/css">
-    <link th:href="@{/admin/plugins/bootstrap-timepicker/bootstrap-timepicker.min.css}" rel="stylesheet" type="text/css">
-    <link th:href="@{/admin/plugins/colorpicker/css/colorpicker.css}" rel="stylesheet" type="text/css">
-
-    <!-- Specific CSS -->
-    <link th:href="@{/admin/plugins/fullcalendar/fullcalendar.css}" rel="stylesheet" type="text/css">
-    <link th:href="@{/admin/plugins/fullcalendar/fullcalendar.print.css}" rel="stylesheet" type="text/css">
-    <link th:href="@{/admin/plugins/introjs/css/introjs.min.css}" rel="stylesheet" type="text/css">
 
     <!-- Theme CSS -->
     <link th:href="@{/admin/css/theme.min.css}" rel="stylesheet" type="text/css">
@@ -55,18 +37,10 @@
     <link th:href="@{/admin/css/ie.css}" rel="stylesheet"> <![endif]-->
     <link th:href="@{/admin/css/chrome.css}" rel="stylesheet" type="text/chrome"> <!-- chrome only css -->
 
-
-    <!-- Responsive CSS -->
     <link th:href="@{/admin/css/theme-responsive.min.css}" rel="stylesheet" type="text/css">
 
-
-    <!-- for specific page in style css -->
-
-    <!-- for specific page responsive in style css -->
-
-
-    <!-- Custom CSS -->
     <link th:href="@{/admin/custom/custom.css}" rel="stylesheet" type="text/css">
+    <th:block layout:fragment="heading"></th:block>
 
 
     <!-- Head SCRIPTS -->
@@ -79,4 +53,5 @@
     <script type="text/javascript" th:src="@{/admin/js/html5shiv.js}"></script>
     <script type="text/javascript" th:src="@{/admin/js/respond.min.js}"></script>
     <![endif]-->
+
 </head>

@@ -1,4 +1,4 @@
-<div th:fragment="javascript" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="javascript" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
     <!-- Javascript =============================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script type="text/javascript" th:src="@{/admin/js/jquery.js}"></script>
@@ -13,41 +13,21 @@
     <script type="text/javascript" th:src="@{/admin/js/plugins.js}"></script>
 
     <script type="text/javascript" th:src="@{/admin/plugins/breakpoints/breakpoints.js}"></script>
-    <script type="text/javascript" th:src="@{/admin/plugins/dataTables/jquery.dataTables.min.js}"></script>
-    <script type="text/javascript" th:src="@{/admin/plugins/prettyPhoto-plugin/js/jquery.prettyPhoto.js}"></script>
 
     <script type="text/javascript" th:src="@{/admin/plugins/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js}"></script>
-    <script type="text/javascript" th:src="@{/admin/plugins/tagsInput/jquery.tagsinput.min.js}"></script>
-    <script type="text/javascript" th:src="@{/admin/plugins/bootstrap-switch/bootstrap-switch.min.js}"></script>
     <script type="text/javascript" th:src="@{/admin/plugins/blockUI/jquery.blockUI.js}"></script>
     <script type="text/javascript" th:src="@{/admin/plugins/pnotify/js/jquery.pnotify.min.js}"></script>
 
     <script type="text/javascript" th:src="@{/admin/js/theme.js}"></script>
     <script type="text/javascript" th:src="@{/admin/custom/custom.js}"></script>
 
-    <!-- Specific Page Scripts Put Here -->
-    <!-- Flot Chart  -->
-    <script type="text/javascript" th:src="@{/admin/plugins/flot/jquery.flot.min.js}"></script>
-    <script type="text/javascript" th:src="@{/admin/plugins/flot/jquery.flot.resize.min.js}"></script>
-    <script type="text/javascript" th:src="@{/admin/plugins/flot/jquery.flot.pie.min.js}"></script>
-    <script type="text/javascript" th:src="@{/admin/plugins/flot/jquery.flot.categories.min.js}"></script>
-    <script type="text/javascript" th:src="@{/admin/plugins/flot/jquery.flot.time.min.js}"></script>
-    <script type="text/javascript" th:src="@{/admin/plugins/flot/jquery.flot.animator.min.js}"></script>
-
-    <!-- Vector Map -->
-    <script type="text/javascript" th:src="@{/admin/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js}"></script>
-    <script type="text/javascript" th:src="@{/admin/plugins/jvectormap/jquery-jvectormap-world-mill-en.js}"></script>
-
     <!-- Calendar -->
     <script type="text/javascript" th:src="@{/admin/plugins/moment/moment.min.js}"></script>
     <script type="text/javascript" th:src="@{/admin/plugins/jquery-ui/jquery-ui.custom.min.js}"></script>
-    <script type="text/javascript" th:src="@{/admin/plugins/fullcalendar/fullcalendar.min.js}"></script>
-
-    <!-- Intro JS (Tour) -->
-    <script type="text/javascript" th:src="@{/admin/plugins/introjs/js/intro.min.js}"></script>
 
     <!-- Sky Icons -->
     <script type="text/javascript" th:src="@{/admin/plugins/skycons/skycons.js}"></script>
+    <th:block layout:fragment="javascripts"></th:block>
 
 
     <script type="text/javascript">
